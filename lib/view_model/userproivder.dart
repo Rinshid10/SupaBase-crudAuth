@@ -10,6 +10,7 @@ class Userproivder extends ChangeNotifier {
 
   Future addDatas(Usermodel models) async {
     try {
+
       await ser.addData(models);
       getalldat();
       notifyListeners();

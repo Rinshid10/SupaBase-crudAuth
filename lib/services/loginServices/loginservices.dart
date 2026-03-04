@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:one/view/HomePage/homepage.dart';
+import 'package:one/view/MainScreen/mainscreen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Loginservices extends ChangeNotifier {
@@ -10,10 +10,9 @@ class Loginservices extends ChangeNotifier {
 
   Future register() async {
     try {
-     final response =  await Supabase.instance.client.auth
-           .signUp(password: password.text, email: email.text);
+      final response = await Supabase.instance.client.auth
+          .signUp(password: password.text, email: email.text);
       log('register succes${response.user?.id}');
-
 
       notifyListeners();
     } on AuthApiException catch (e) {
@@ -26,7 +25,11 @@ class Loginservices extends ChangeNotifier {
       final response = await Supabase.instance.client.auth
           .signInWithPassword(password: password, email: email);
       log('login success: ${response.user?.id}');
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HompePage()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const MainScreen()),
+        (route) => false,
+      );
       notifyListeners();
     } on AuthApiException catch (e) {
       log('error found in login: ${e.message} ${e.statusCode}');

@@ -21,16 +21,22 @@ class ImageProviders extends ChangeNotifier {
     }
   }
 
-  Future<void> addImage() async {
-    log('${imageFile}',name: 'imageFile');
+  Future<String?> addImage() async {
+
     if (imageFile == null) {
       log('No image selected');
-      return;
+      return null;
     }
-    await ser.uploadImage(imageFile!);
-    log(imageFile.toString());
+    final response = await ser.uploadImage(imageFile!);
+
     await getImage();
-    log("img added!");
+  
+    return response;
+  }
+
+  void clearImage() {
+    imageFile = null;
+    notifyListeners();
   }
 
   Future<void> getImage() async {

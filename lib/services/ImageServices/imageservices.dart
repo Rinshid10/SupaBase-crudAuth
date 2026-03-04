@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Imageservices {
-  Future<void> uploadImage(File image) async {
+  Future <String?> uploadImage(File image) async {
     final supabase = Supabase.instance.client;
     final bucketName = 'storeimage';
     final fileName = DateTime.now().toIso8601String() + '.jpg';
@@ -13,6 +13,7 @@ class Imageservices {
       final publicUrl =
           supabase.storage.from(bucketName).getPublicUrl(fileName);
       log('Image uploaded successfully. Public URL: $publicUrl');
+      return publicUrl;
     } catch (error) {
       log('Error uploading image: $error');
     }

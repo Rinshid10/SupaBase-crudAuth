@@ -18,9 +18,9 @@ class HompePage extends StatefulWidget {
 class _HompePageState extends State<HompePage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Provider.of<Userproivder>(context, listen: false).getalldat();
+    Provider.of<ImageProviders>(context, listen: false).getImage();
   }
 
   @override
@@ -48,16 +48,19 @@ class _HompePageState extends State<HompePage> {
             itemCount: value.listData.length,
             itemBuilder: (context, index) {
               final datas = value.listData[index];
-              final images = imagesProviders.imagesAll[index];
+              // Safely access image - check if index exists in imagesAll
+              final imageUrl = index < imagesProviders.imagesAll.length
+                  ? imagesProviders.imagesAll[index]
+                  : null;
               log('${datas.username}');
               return GestureDetector(
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => Editpage(
-                              password: datas.password,
-                              username: datas.username,
-                              id: datas.id,
+                              password: datas.password ?? '',
+                              username: datas.username ?? '',
+                              id: datas.id ?? 0,
                             ))),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -66,20 +69,22 @@ class _HompePageState extends State<HompePage> {
                     child: ListTile(
                       leading: CircleAvatar(
                         radius: 30,
-                        child: Image.network(
-                          images,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Center(
-                              child: Text('Failed to load image'),
-                            );
-                          },
-                        ),
+                        child: imageUrl != null
+                            ? Image.network(
+                                imageUrl,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(Icons.person);
+                                },
+                              )
+                            : const Icon(Icons.person),
                       ),
                       title: Text(datas.username ?? 'no name found'),
                       subtitle: Text(datas.password ?? 'no password found'),
                       trailing: IconButton(
                           onPressed: () {
-                            value.deleteData(datas.id!);
+                            if (datas.id != null) {
+                              value.deleteData(datas.id!);
+                            }
                           },
                           icon: Icon(Icons.delete)),
                     ),

@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:one/model/UserModel/usermodel.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -9,15 +8,30 @@ class Userservices {
 
   Future addData(Usermodel models) async {
     try {
+      // Check if user is authenticated
+      final currentUser = Supabase.instance.client.auth.currentUser;
+      if (currentUser == null) {
+      
+        throw Exception('User not authenticated. Please login first.');
+      }
+
       await supabaseData.insert([models.toSupabase()]);
-      log('added to supabse');
+     
     } catch (e) {
       log('error to add to supabase $e');
+      rethrow;
     }
   }
 
   Future<List<Usermodel>> getAllData() async {
     try {
+      // Check if user is authenticated
+      final currentUser = Supabase.instance.client.auth.currentUser;
+      if (currentUser == null) {
+        log('error to fetch all data: User not authenticated. Please login first.');
+        return [];
+      }
+
       final respone = await supabaseData.select('*');
       return respone.map((e) => Usermodel.fromSupaBase(e)).toList();
     } catch (e) {

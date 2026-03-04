@@ -12,7 +12,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
     anonKey: Supabsekey.supaKey,
-    url: Supabsekey.supaUrl,
+    url: 'https://aacxepatckynoxgijxsn.supabase.co',
   );
   runApp(MyApp());
 }
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        home: HompePage(),
+        home: Loginpage(),
       ),
     );
   }

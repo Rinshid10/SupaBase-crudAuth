@@ -1,5 +1,5 @@
 class Supabsekey {
-  static const supaUrl = 'https://sguyayhnpmaieuzzlasm.supabase.co';
+  // static const supaUrl = 'https://aacxepatckynoxgjxsn.supabase.co';
   static const supaKey =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNndXlheWhucG1haWV1enpsYXNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzUxODk3ODMsImV4cCI6MjA1MDc2NTc4M30.qtrxHwzvTgsDhL__ypjlyLYgT7KE4-9rTEHsyzVPdtw';
+      'sb_publishable_fTw43er8LT-F9Q9cQAz1gQ_3G5wRxPn';
 }

@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 
 class Loginpage extends StatelessWidget {
   Loginpage({super.key});
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
+  TextEditingController email = TextEditingController( text: 'rinshid@gmail.com');
+  TextEditingController password = TextEditingController(text: 'rinshid123');
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class Loginpage extends StatelessWidget {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                   onPressed: () {
-                    value.login(password.text, email.text);
+                    value.login(password.text, email.text,context);
                   },
                   child: Text('login')),
               ElevatedButton(

@@ -1,8 +1,6 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:one/model/UserModel/usermodel.dart';
 import 'package:one/services/UserServices/userservices.dart';
 

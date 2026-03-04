@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class Editpage extends StatelessWidget {
   String? username;
   String? password;
-  int? id;
+  int id;
   Editpage(
       {super.key,
       required this.password,
@@ -43,7 +43,7 @@ class Editpage extends StatelessWidget {
                 onPressed: () {
                   final save =
                       Usermodel(password: passwords.text, username: name.text);
-                  value.updateData(id!, save);
+                  value.updateData(id, save);
 
                   Navigator.pop(context);
                 },

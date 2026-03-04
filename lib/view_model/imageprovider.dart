@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:one/services/ImageServices/imageservices.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ImageProviders extends ChangeNotifier {
   Imageservices ser = Imageservices();
@@ -22,14 +21,19 @@ class ImageProviders extends ChangeNotifier {
     }
   }
 
-  void addImage() async {
+  Future<void> addImage() async {
+    log('${imageFile}',name: 'imageFile');
+    if (imageFile == null) {
+      log('No image selected');
+      return;
+    }
     await ser.uploadImage(imageFile!);
     log(imageFile.toString());
-    getImage();
+    await getImage();
     log("img added!");
   }
 
-  void getImage() async {
+  Future<void> getImage() async {
     try {
       imagesAll = await ser.getimags();
       notifyListeners();

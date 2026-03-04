@@ -86,7 +86,7 @@ class GamerPhotoGalleryController extends ChangeNotifier {
   Future<bool> pickImage() async {
     try {
       await imageProvider.pickImage();
-      return imageProvider.imageFile != null;
+      return imageProvider.imageBytes != null;
     } catch (e) {
       _errorMessage = 'Error picking image: $e';
       notifyListeners();
@@ -97,7 +97,7 @@ class GamerPhotoGalleryController extends ChangeNotifier {
 
   /// Uploads the selected image and saves it to user's image list
   Future<bool> uploadImage() async {
-    if (imageProvider.imageFile == null) {
+    if (imageProvider.imageBytes == null) {
       _errorMessage = 'No image selected';
       notifyListeners();
       return false;

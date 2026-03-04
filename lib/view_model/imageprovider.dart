@@ -1,12 +1,12 @@
 import 'dart:developer';
-import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:one/services/ImageServices/imageservices.dart';
 
 class ImageProviders extends ChangeNotifier {
   Imageservices ser = Imageservices();
-  File? imageFile;
+  Uint8List? imageBytes;
   List<String> imagesAll = [];
 
   final ImagePicker _imagePicker = ImagePicker();
@@ -15,27 +15,25 @@ class ImageProviders extends ChangeNotifier {
     final pickedFile =
         await _imagePicker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      imageFile = File(pickedFile.path);
-
+      imageBytes = await pickedFile.readAsBytes();
       notifyListeners();
     }
   }
 
   Future<String?> addImage() async {
-
-    if (imageFile == null) {
+    if (imageBytes == null) {
       log('No image selected');
       return null;
     }
-    final response = await ser.uploadImage(imageFile!);
+    final response = await ser.uploadImage(imageBytes!);
 
     await getImage();
-  
+
     return response;
   }
 
   void clearImage() {
-    imageFile = null;
+    imageBytes = null;
     notifyListeners();
   }
 

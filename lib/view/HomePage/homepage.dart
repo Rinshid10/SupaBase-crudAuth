@@ -39,7 +39,7 @@ class HomeTab extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 const Text(
-                  'GAMEVAULT',
+                  'KOOAMPARA PES',
                   style: TextStyle(
                     color: Color(0xFF00E5FF),
                     fontSize: 24,
@@ -254,15 +254,15 @@ class _GamerCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  if (onDelete != null)
-                    InkWell(
-                      onTap: onDelete,
-                      child: Icon(
-                        Icons.delete_outline,
-                        size: 18,
-                        color: Colors.white.withValues(alpha: 0.4),
-                      ),
-                    ),
+                  // if (onDelete != null )
+                    // InkWell(
+                    //   onTap: onDelete,
+                    //   child: Icon(
+                    //     Icons.delete_outline,
+                    //     size: 18,
+                    //     color: Colors.white.withValues(alpha: 0.4),
+                    //   ),
+                    // ),
                 ],
               ),
             ),

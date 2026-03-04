@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:one/constents/supabsekey.dart';
 import 'package:one/services/loginServices/loginservices.dart';
-import 'package:one/view/LoginAndSignUp/Login/login.dart';
+import 'package:one/view/AuthWrapper/authwrapper.dart';
 import 'package:one/view_model/imageprovider.dart';
 import 'package:one/view_model/userproivder.dart';
 import 'package:provider/provider.dart';
@@ -93,7 +93,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: Loginpage(),
+        home: const AuthWrapper(),
       ),
     );
   }

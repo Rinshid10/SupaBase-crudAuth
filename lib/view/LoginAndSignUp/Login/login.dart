@@ -42,7 +42,7 @@ class Loginpage extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     const Text(
-                      'GAMEVAULT',
+                      'Kootampara Pes',
                       style: TextStyle(
                         color: Color(0xFF00E5FF),
                         fontSize: 28,
@@ -107,32 +107,32 @@ class Loginpage extends StatelessWidget {
                     const SizedBox(height: 20),
 
                     // Register link
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const RegisterPage()),
-                        );
-                      },
-                      child: RichText(
-                        text: TextSpan(
-                          text: "Don't have an account? ",
-                          style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.4)),
-                          children: const [
-                            TextSpan(
-                              text: 'REGISTER',
-                              style: TextStyle(
-                                color: Color(0xFF00E5FF),
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    // TextButton(
+                    //   onPressed: () {
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //           builder: (context) => const RegisterPage()),
+                    //     );
+                    //   },
+                    //   child: RichText(
+                    //     text: TextSpan(
+                    //       text: "Don't have an account? ",
+                    //       style: TextStyle(
+                    //           color: Colors.white.withValues(alpha: 0.4)),
+                    //       children: const [
+                    //         TextSpan(
+                    //           text: 'REGISTER',
+                    //           style: TextStyle(
+                    //             color: Color(0xFF00E5FF),
+                    //             fontWeight: FontWeight.bold,
+                    //             letterSpacing: 1,
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

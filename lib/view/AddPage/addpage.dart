@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:one/model/UserModel/usermodel.dart';
 import 'package:one/view_model/imageprovider.dart';
@@ -105,16 +102,13 @@ class _AddGameUserBodyState extends State<_AddGameUserBody> {
                           ],
                         ),
                         child: ClipOval(
-                          child: imageProvider.imageFile != null
-                              ? (kIsWeb
-                                  ? const Icon(Icons.image,
-                                      size: 50, color: Color(0xFF00E5FF))
-                                  : Image.file(
-                                      imageProvider.imageFile!,
+                          child: imageProvider.imageBytes != null
+                              ? Image.memory(
+                                      imageProvider.imageBytes!,
                                       fit: BoxFit.cover,
                                       width: 140,
                                       height: 140,
-                                    ))
+                                    )
                               : Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -221,7 +215,7 @@ class _AddGameUserBodyState extends State<_AddGameUserBody> {
     setState(() => _isSaving = true);
 
     try {
-      if (imageProvider.imageFile != null) {
+      if (imageProvider.imageBytes != null) {
         final response = await imageProvider.addImage();
         if (response != null) {
           final save = Usermodel(
